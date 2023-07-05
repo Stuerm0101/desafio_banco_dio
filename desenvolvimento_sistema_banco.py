@@ -21,14 +21,16 @@ saldo = 0
 limite = 500
 extrato = ""
 numero_saques = 0
-LIMITE_SAQUE=3
+LIMITE_SAQUE = 3
 
 while True:
-    opcao = input(menu)
     print(regras_de_uso)
     
+    opcao = input(menu)
+
+    
     if opcao == "d":
-        valor = float(input("Informe o valor a ser depositado"))
+        valor = float(input("Informe o valor a ser depositado: "))
         if valor > 0:
             saldo += valor
             extrato += f"Depósito: R$ {valor:.2f}\n"
@@ -36,13 +38,22 @@ while True:
             print("A opração falhou! O valor informado é inválido")    
     
     elif opcao == "s":
-        valor=float(input("Informe o valor a ser sacado"))
+        valor=float(input("Informe o valor a ser sacado: "))
         
-        teste_limite = valor > limite
-        teste_saldo = valor > saldo
-        teste_saque = numero_saques > LIMITE_SAQUE
-        
-        situacao_aprovado = teste_limite and teste_saldo and teste_saque
+        if valor > limite:
+            print("O valor de saque não pode exceder o limite de R$500\n")
+            situacao_aprovado = False
+
+        elif valor > saldo:
+            print("Você não tem saldo disponível em sua conta\n")
+            situacao_aprovado = False
+
+        elif numero_saques == LIMITE_SAQUE:
+            print("Você ja antingiu o limite de saques em um dia\n")
+            situacao_aprovado = False
+
+        else:
+            situacao_aprovado = True
 
         if situacao_aprovado and valor > 0:
             saldo -= valor
