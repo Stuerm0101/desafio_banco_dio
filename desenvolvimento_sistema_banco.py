@@ -9,11 +9,11 @@ menu="""
 """
 regras_de_uso = """
 Regras do banco:
---------------------------------------------------------------------------
+=========================================================================
 O valor máximo de saque é de R$500
 Só podem ser realizados um máximo de 3 saques por dia 
 Caso não haja saldo em sua conta a operação de saque ficará indisponível
---------------------------------------------------------------------------
+=========================================================================
 Agradecemos a compreensão
 """
 
